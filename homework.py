@@ -13,7 +13,7 @@ def malumot ( ism,familiya,**malumotlar):
         malumotlar['familiya']=familiya
         return malumotlar
 
-malumot1 = malumot("shaydo", "bekturdieva", t_yil='2008', t_joy='urrganch shahri')
+malumot1 = malumot("shaydo", "bekturdieva", t_yil='2008', t_joy='urganch shahri')
 print(malumot1)
 
 
