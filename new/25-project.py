@@ -1,51 +1,73 @@
+
 class Shaxs:
-    def __init__(self, ism, familiya, passport,tyil):
+    def __init__(self, ism, yosh, jins):
         self.ism = ism
-        self.familiya = familiya
-        self.passpport = passport
-        self.tyil = tyil
+        self.yosh = yosh
+        self.jins = jins
 
     def get_info(self):
-        info = f"{self.ism} {self.familiya}. "
-        info += f"Passport: {self.passpport}, {self.tyil}-yilda tugilgan"
-        return info
-    def get_age(self,yil):
-        return yil-self.tyil
+        return f"Ismi {self.ism}, Yoshi {self.yosh}, Jinsi {self.jins}"
 
-# inson = Shaxs("Egambergebnov","Otabek","AB456456",2001)
-#
-# print(f"{inson.get_info()}. {inson.get_age(2024)} yoshda")
 
-class Talaba(Shaxs):
-    def __init__(self,ism,familiya,passport,tyil,idraqam, manzil):
-        super().__init__(ism, familiya, passport, tyil)
-        self.idraqam = idraqam
-        self.bosqich = 1
-        self.manzil = manzil
-    def get_id(self):
-        return self.idraqam
 
-    def get_bosqich(self):
-        return self.bosqich
+class Professor(Shaxs):
+    def __init__(self, ism, yosh, jins, fan, daraja):
+        super().__init__(ism, yosh, jins)
+        self.fan = fan
+        self.daraja = daraja
 
     def get_info(self):
-        info = f"{self.ism} {self.familiya}. "
-        info += f"{self.get_bosqich()}-bosqich. ID raqam,{self.idraqam}-yilda tugilgan"
-        return info
+        return f"Professor {self.ism}, Yoshi {self.yosh}, Fani {self.fan}, Ilmiy daraja: {self.daraja}"
 
-class Manzil:
-    def __init__(self, uy, kocha, tuman, viloyat):
-        self.uy = uy
-        self.kocha = kocha
-        self.tuman = tuman
-        self.viloyat = viloyat
 
-    def get_manzil(self):
-        manzil = f"{self.viloyat} viloyati, {self.tuman} shahar. "
-        manzil += f"{self.kocha} ko'chasi, {self.uy}-uy"
-        return manzil
 
-talaba_manzili = Manzil("208a","Partov", "Urganch", "Xorazm")
-talaba = Talaba("bekturdiyeva","shaydo","AB654649687",2001, "000065", talaba_manzili)
-print(f"{talaba.get_info()}, Bosqich: {talaba.get_bosqich()}, Id raqami:{talaba.get_id()}. {talaba.get_age(2024)}-yoshda\n"
-      f"{talaba_manzili.get_manzil()}")
+class Foydalanuvchi(Shaxs):
+    def __init__(self, ism, yosh, jins, login, email):
+        super().__init__(ism, yosh, jins)
+        self.login = login
+        self.email = email
+
+    def get_info(self):
+        return f"Foydalanuvchi {self.ism}, Login {self.login}, Email {self.email}"
+
+
+
+
+
+
+class Mijoz(Shaxs):
+    def __init__(self, ism, yosh, jins, mijoz_id, xarid_soni):
+        super().__init__(ism, yosh, jins)
+        self.mijoz_id = mijoz_id
+        self.xarid_soni = xarid_soni
+
+    def get_info(self):
+        return f"Mijoz {self.ism}, ID {self.mijoz_id}, Xaridlar soni {self.xarid_soni}"
+
+
+
+class Admin(Foydalanuvchi):
+    def __init__(self, ism, yosh, jins, login, email, admin_daraja_bali):
+        super().__init__(ism, yosh, jins, login, email)
+        self.admin_daraja = admin_daraja_bali
+
+    def get_info(self):
+        return f"Admin {self.ism}, Login {self.login}, Email {self.email}, Admin darajasi {self.admin_daraja}"
+
+    def ban_user(self):
+        print("Foydalanuvchi bloklandi")
+
+
+
+professor = Professor("shaydo", 35, "ayol", "iqtisod", "Magistrant")
+foydalanuvchi = Foydalanuvchi("zilola", 30, "Ayol", "zilola1234", "zilola1234@mail.com")
+mijoz = Mijoz("elvira", 20, "Ayol", "zoo87", 10)
+admin = Admin("Azizbek", 18, "Erkak", "admin_az1zbek", "admin@azizbekk.com", 5)
+
+print(professor.get_info())
+print(foydalanuvchi.get_info())
+print(mijoz.get_info())
+print(admin.get_info())
+
+
+admin.ban_user()
